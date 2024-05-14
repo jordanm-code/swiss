@@ -2,6 +2,44 @@ package swiss
 
 import "strings"
 
+// IsUpper checks if a string is all uppercase.
+func IsUpper(s string) bool {
+	return len(s) > 0 && s == strings.ToUpper(s)
+}
+
+// IsLower checks if a string is all lowercase.
+func IsLower(s string) bool {
+	return len(s) > 0 && s == strings.ToLower(s)
+}
+
+// SnakeCase converts a string to snake case.
+// Inputs can be space separated, camel case, or pascal case.
+func SnakeCase(s string) string {
+	if len(s) < 1 {
+		return s
+	}
+
+	hasSpaces := strings.Contains(s, " ")
+
+	ss := strings.Split(s, "")
+	res := []string{}
+	for i := 0; i < len(ss); i++ {
+		if hasSpaces {
+			if ss[i] == " " {
+				res = append(res, "_")
+				continue
+			}
+		} else {
+			if i != 0 && IsUpper(ss[i]) {
+				res = append(res, "_", strings.ToLower(ss[i]))
+				continue
+			}
+		}
+		res = append(res, strings.ToLower(ss[i]))
+	}
+	return strings.Join(res, "")
+}
+
 // TitleCase converts a string to title case.
 func TitleCase(s string) string {
 	if len(s) < 1 {
