@@ -141,3 +141,68 @@ func TestPascalCase(t *testing.T) {
 		})
 	}
 }
+
+func TestIsHexChar(t *testing.T) {
+	tests := []struct {
+		input  byte
+		output bool
+	}{
+		{'0', true},
+		{'1', true},
+		{'2', true},
+		{'3', true},
+		{'4', true},
+		{'5', true},
+		{'6', true},
+		{'7', true},
+		{'8', true},
+		{'9', true},
+		{'a', true},
+		{'b', true},
+		{'c', true},
+		{'d', true},
+		{'e', true},
+		{'f', true},
+		{'A', true},
+		{'B', true},
+		{'C', true},
+		{'D', true},
+		{'E', true},
+		{'F', true},
+		{'G', false},
+		{'!', false},
+	}
+	for _, tt := range tests {
+		if got := IsHexChar(tt.input); got != tt.output {
+			t.Errorf("IsHexChar() = %v, want %v", got, tt.output)
+		}
+	}
+}
+
+func TestIsUUID(t *testing.T) {
+	tests := []struct {
+		name   string
+		input  string
+		output bool
+	}{
+		{"empty", "", false},
+		{"nil", "00000000-0000-0000-0000-000000000000", true},
+		{"too many", "00000000-00000-00000-00000-000000000000", false},
+		{"too few", "00000000-0000-0000-0000-00000000000", false},
+		{"wrong parts", "0000000-00000-0000-0000-00000000000", false},
+		{"V1", "61800296-11e2-11ef-9262-0242ac120002", true},
+		{"V2", "000003e8-11e2-21ef-8000-325096b39f47", true},
+		{"V3", "8160c6f7-7c1e-31b8-a5ec-e9050e4c9a49", true},
+		{"V4", "91b38875-7e07-4976-a231-9c28d7293da9", true},
+		{"V5", "1c3af639-5b19-52df-8294-f41ae8707b37", true},
+		{"V6", "016b21dc-8850-6946-9866-ef9afbd9b57d", true},
+		{"V7", "018f76cc-ceb0-7fbe-957c-be10ada3d501", true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := IsUUID(tt.input); got != tt.output {
+				t.Errorf("IsUUID() = %v, want %v", got, tt.output)
+			}
+		})
+	}
+}

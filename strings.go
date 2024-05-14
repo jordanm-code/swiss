@@ -1,6 +1,8 @@
 package swiss
 
-import "strings"
+import (
+	"strings"
+)
 
 // IsUpper checks if a string is all uppercase.
 func IsUpper(s string) bool {
@@ -10,6 +12,33 @@ func IsUpper(s string) bool {
 // IsLower checks if a string is all lowercase.
 func IsLower(s string) bool {
 	return len(s) > 0 && s == strings.ToLower(s)
+}
+
+// IsHexChar checks if a character is a valid hexadecimal character.
+func IsHexChar(c byte) bool {
+	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')
+}
+
+// IsUUID will take a string and determine if it is a valid UUID,
+// it will return true if it is and false if it is not.
+func IsUUID(s string) bool {
+	if len(s) != 36 {
+		return false
+	}
+
+	for i := 0; i < 36; i++ {
+		switch i {
+		case 8, 13, 18, 23:
+			if s[i] != '-' {
+				return false
+			}
+		default:
+			if !IsHexChar(byte(s[i])) {
+				return false
+			}
+		}
+	}
+	return true
 }
 
 // SnakeCase converts a string to snake case.
