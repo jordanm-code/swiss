@@ -100,19 +100,43 @@ func TestTitleCase(t *testing.T) {
 
 func TestCamelCase(t *testing.T) {
 	tests := []struct {
-		name  string
-		given string
-		want  string
-		err   error
+		input  string
+		output string
 	}{
-		{"ok, all lowercase", "hello world", "helloWorld", nil},
-		{"ok, mixed case", "HeLlO WoRlD", "helloWorld", nil},
+		{"hello world", "helloWorld"},
+		{"HeLlO WoRlD", "helloWorld"},
+		{"hello world", "helloWorld"},
+		{"HELLO WORLD", "helloWorld"},
+		{"hello WORLD", "helloWorld"},
+		{"HELLO world", "helloWorld"},
+		{"hello world!", "helloWorld!"},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := CamelCase(tt.given)
-			if got != tt.want {
-				t.Errorf("got %s, want %s", got, tt.want)
+		t.Run(tt.input, func(t *testing.T) {
+			if CamelCase(tt.input) != tt.output {
+				t.Errorf("got %s, want %s", tt.input, tt.output)
+			}
+		})
+	}
+}
+
+func TestPascalCase(t *testing.T) {
+	tests := []struct {
+		input  string
+		output string
+	}{
+		{"hello world", "HelloWorld"},
+		{"HeLlO WoRlD", "HelloWorld"},
+		{"hello world", "HelloWorld"},
+		{"HELLO WORLD", "HelloWorld"},
+		{"hello WORLD", "HelloWorld"},
+		{"HELLO world", "HelloWorld"},
+		{"hello world!", "HelloWorld!"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			if PascalCase(tt.input) != tt.output {
+				t.Errorf("got %s, want %s", tt.input, tt.output)
 			}
 		})
 	}
