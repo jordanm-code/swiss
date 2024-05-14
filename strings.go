@@ -14,6 +14,36 @@ func IsLower(s string) bool {
 	return len(s) > 0 && s == strings.ToLower(s)
 }
 
+// IsAlpha checks if a string is all alphabetic characters.
+func IsAlpha(s string) bool {
+	return len(s) > 0 && s == strings.Map(func(r rune) rune {
+		if r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' {
+			return r
+		}
+		return -1
+	}, s)
+}
+
+// IsNumeric checks if a string is all numeric characters.
+func IsNumeric(s string) bool {
+	return len(s) > 0 && s == strings.Map(func(r rune) rune {
+		if r >= '0' && r <= '9' {
+			return r
+		}
+		return -1
+	}, s)
+}
+
+// IsAlphaNumeric checks if a string is all alphanumeric characters.
+func IsAlphaNumeric(s string) bool {
+	return len(s) > 0 && s == strings.Map(func(r rune) rune {
+		if r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' || r >= '0' && r <= '9' {
+			return r
+		}
+		return -1
+	}, s)
+}
+
 // IsHexChar checks if a character is a valid hexadecimal character.
 func IsHexChar(c byte) bool {
 	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')

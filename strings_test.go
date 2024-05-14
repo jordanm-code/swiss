@@ -142,6 +142,80 @@ func TestPascalCase(t *testing.T) {
 	}
 }
 
+func TestIsAlpha(t *testing.T) {
+	tests := []struct {
+		input  string
+		output bool
+	}{
+		{"", false},
+		{"a", true},
+		{"A", true},
+		{"AbCdeFg", true},
+		{"AbC!deFg", false},
+		{"1", false},
+		{"a b", false},
+		{"A B", false},
+		{"hello world", false},
+		{"HELLO WORLD", false},
+		{"hello WORLD", false},
+		{"HELLO world", false},
+	}
+
+	for _, test := range tests {
+		if got := IsAlpha(test.input); got != test.output {
+			t.Errorf("IsAlpha(%q) = %t; want %t", test.input, got, test.output)
+		}
+	}
+}
+
+func TestIsNumeric(t *testing.T) {
+	tests := []struct {
+		input  string
+		output bool
+	}{
+		{"", false},
+		{"a", false},
+		{"!", false},
+		{"1", true},
+		{"1234567890", true},
+		{"1 2 3 4 5 6 7 8 9 0", false},
+		{"hello WORLD", false},
+		{"HELLO world", false},
+	}
+
+	for _, test := range tests {
+		if got := IsNumeric(test.input); got != test.output {
+			t.Errorf("IsNumeric(%q) = %t; want %t", test.input, got, test.output)
+		}
+	}
+}
+
+func TestIsAlphaNumeric(t *testing.T) {
+	tests := []struct {
+		input  string
+		output bool
+	}{
+		{"", false},
+		{"a", true},
+		{"A", true},
+		{"1", true},
+		{"AbCdeFg", true},
+		{"AbC!deFg", false},
+		{"1", true},
+		{"1 2 3 4 5 6 7 8 9 0", false},
+		{"hello world", false},
+		{"HELLO WORLD", false},
+		{"hello WORLD", false},
+		{"HELLO world", false},
+	}
+
+	for _, test := range tests {
+		if got := IsAlphaNumeric(test.input); got != test.output {
+			t.Errorf("IsAlphaNumeric(%q) = %t; want %t", test.input, got, test.output)
+		}
+	}
+}
+
 func TestIsHexChar(t *testing.T) {
 	tests := []struct {
 		input  byte
