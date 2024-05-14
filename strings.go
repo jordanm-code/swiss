@@ -18,3 +18,17 @@ func TitleCase(s string) string {
 	}
 	return strings.Join(ss, "")
 }
+
+// CamelCase converts a string to camel case
+func CamelCase(s string) string {
+	s = strings.ToLower(s)
+	words := strings.Fields(s)
+	for i, word := range words {
+		if i == 0 {
+			continue
+		}
+
+		words[i] = strings.ToUpper(word[:1]) + word[1:]
+	}
+	return strings.Join(words, "")
+}

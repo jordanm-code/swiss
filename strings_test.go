@@ -29,3 +29,23 @@ func TestTitleCase(t *testing.T) {
 		}
 	}
 }
+
+func TestCamelCase(t *testing.T) {
+	tests := []struct {
+		name  string
+		given string
+		want  string
+		err   error
+	}{
+		{"ok, all lowercase", "hello world", "helloWorld", nil},
+		{"ok, mixed case", "HeLlO WoRlD", "helloWorld", nil},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := CamelCase(tt.given)
+			if got != tt.want {
+				t.Errorf("got %s, want %s", got, tt.want)
+			}
+		})
+	}
+}
