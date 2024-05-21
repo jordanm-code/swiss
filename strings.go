@@ -2,6 +2,8 @@ package swiss
 
 import (
 	"strings"
+
+	"golang.org/x/text/unicode/bidi"
 )
 
 // IsUpper checks if a string is all uppercase.
@@ -69,6 +71,12 @@ func IsUUID(s string) bool {
 		}
 	}
 	return true
+}
+
+// Reverse returns the string in reverse order.
+// This function is an alias for [bidi.ReverseString].
+func Reverse(s string) string {
+	return bidi.ReverseString(s)
 }
 
 // SnakeCase converts a string to snake case.

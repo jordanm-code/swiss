@@ -280,3 +280,24 @@ func TestIsUUID(t *testing.T) {
 		})
 	}
 }
+
+func TestReverse(t *testing.T) {
+	tests := []struct {
+		input  string
+		output string
+	}{
+		{"", ""},
+		{"a", "a"},
+		{"ab", "ba"},
+		{"abc", "cba"},
+		{"hello world", "dlrow olleh"},
+		{"حتوي على شريط التمرير على الجانب الأيمن", "نميألا بناجلا ىلع ريرمتلا طيرش ىلع يوتح"},
+	}
+
+	for _, test := range tests {
+		got := Reverse(test.input)
+		if got != test.output {
+			t.Errorf("Reverse(%q) = %q; want %q", test.input, got, test.output)
+		}
+	}
+}
