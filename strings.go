@@ -49,6 +49,11 @@ func IsHexChar(c byte) bool {
 	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')
 }
 
+// IsSnakeCase checks to see if supplied string is in snake case.
+func IsSnakeCase(s string) bool {
+	return strings.Contains(s, "_") && IsLower(s) && !strings.Contains(s, " ")
+}
+
 // IsUUID will take a string and determine if it is a valid UUID,
 // it will return true if it is and false if it is not.
 func IsUUID(s string) bool {
@@ -120,6 +125,9 @@ func TitleCase(s string) string {
 func CamelCase(s string) string {
 	s = strings.ToLower(s)
 	words := strings.Fields(s)
+	if IsSnakeCase(s) {
+		words = strings.Split(s, "_")
+	}
 	for i, word := range words {
 		if i == 0 {
 			continue
