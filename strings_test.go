@@ -280,3 +280,27 @@ func TestIsUUID(t *testing.T) {
 		})
 	}
 }
+
+func TestSwapCase(t *testing.T) {
+	tests := []struct {
+		input  string
+		output string
+	}{
+		{"", ""},
+		{"a", "A"},
+		{"A", "a"},
+		{"a b", "A B"},
+		{"A B", "a b"},
+		{"hello world", "HELLO WORLD"},
+		{"HELLO WORLD", "hello world"},
+		{"hello WORLD", "HELLO world"},
+		{"HELLO world", "hello WORLD"},
+		{"heLLo WoRLd", "HEllO wOrlD"},
+	}
+
+	for _, test := range tests {
+		if got := SwapCase(test.input); got != test.output {
+			t.Errorf("SwapCase(%q) = %q; want %q", test.input, got, test.output)
+		}
+	}
+}
