@@ -302,9 +302,10 @@ func TestSwapCase(t *testing.T) {
 	for _, test := range tests {
 		if got := SwapCase(test.input); got != test.output {
 			t.Errorf("SwapCase(%q) = %q; want %q", test.input, got, test.output)
-    }
-  }
-  
+		}
+	}
+}
+
 func TestReverse(t *testing.T) {
 	tests := []struct {
 		input  string
