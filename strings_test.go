@@ -110,6 +110,7 @@ func TestCamelCase(t *testing.T) {
 		{"hello WORLD", "helloWorld"},
 		{"HELLO world", "helloWorld"},
 		{"hello world!", "helloWorld!"},
+		{"hello_world", "helloWorld"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
@@ -298,6 +299,27 @@ func TestReverse(t *testing.T) {
 		got := Reverse(test.input)
 		if got != test.output {
 			t.Errorf("Reverse(%q) = %q; want %q", test.input, got, test.output)
+		}
+	}
+}
+
+func TestIsSnakeCase(t *testing.T) {
+	tests := []struct {
+		input  string
+		output bool
+	}{
+		{"", false},
+		{"hello", false},
+		{"WORLD", false},
+		{"Hello_world", false},
+		{"hello world_there", false},
+		{"a_b", true},
+		{"hello_world_there", true},
+	}
+
+	for _, test := range tests {
+		if got := IsSnakeCase(test.input); got != test.output {
+			t.Errorf("IsSnakeCase(%q) = %t; want %t", test.input, got, test.output)
 		}
 	}
 }

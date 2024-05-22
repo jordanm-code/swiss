@@ -3,8 +3,12 @@ package swiss
 import (
 	"strings"
 
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 	"golang.org/x/text/unicode/bidi"
 )
+
+var Language = language.English
 
 // IsUpper checks if a string is all uppercase.
 func IsUpper(s string) bool {
@@ -49,6 +53,11 @@ func IsAlphaNumeric(s string) bool {
 // IsHexChar checks if a character is a valid hexadecimal character.
 func IsHexChar(c byte) bool {
 	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')
+}
+
+// IsSnakeCase checks to see if supplied string is in snake case.
+func IsSnakeCase(s string) bool {
+	return strings.Contains(s, "_") && IsLower(s) && !strings.Contains(s, " ")
 }
 
 // IsUUID will take a string and determine if it is a valid UUID,
@@ -109,25 +118,16 @@ func SnakeCase(s string) string {
 
 // TitleCase converts a string to title case.
 func TitleCase(s string) string {
-	if len(s) < 1 {
-		return s
-	}
-	ss := strings.Split(s, "")
-	ss[0] = strings.ToUpper(ss[0])
-	for i := 1; i < len(ss); i++ {
-		if ss[i-1] == " " {
-			ss[i] = strings.ToUpper(ss[i])
-		} else {
-			ss[i] = strings.ToLower(ss[i])
-		}
-	}
-	return strings.Join(ss, "")
+	return cases.Title(Language).String(s)
 }
 
 // CamelCase converts a string to camel case.
 func CamelCase(s string) string {
 	s = strings.ToLower(s)
 	words := strings.Fields(s)
+	if IsSnakeCase(s) {
+		words = strings.Split(s, "_")
+	}
 	for i, word := range words {
 		if i == 0 {
 			continue
@@ -141,10 +141,6 @@ func CamelCase(s string) string {
 // PascalCase converts a string to pascal case, it can take in a string that is both
 // title case and camel case and convert it to camel case.
 func PascalCase(s string) string {
-	s = strings.ToLower(s)
-	words := strings.Fields(s)
-	for i, word := range words {
-		words[i] = strings.ToUpper(word[:1]) + word[1:]
-	}
-	return strings.Join(words, "")
+	c := CamelCase(s)
+	return strings.ToUpper(c[:1]) + c[1:]
 }
