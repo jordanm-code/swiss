@@ -5,6 +5,7 @@ import (
 
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
+	"golang.org/x/text/unicode/bidi"
 )
 
 var Language = language.English
@@ -79,6 +80,12 @@ func IsUUID(s string) bool {
 		}
 	}
 	return true
+}
+
+// Reverse returns the string in reverse order.
+// This function is an alias for [bidi.ReverseString].
+func Reverse(s string) string {
+	return bidi.ReverseString(s)
 }
 
 // SnakeCase converts a string to snake case.
