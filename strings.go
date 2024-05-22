@@ -133,10 +133,6 @@ func CamelCase(s string) string {
 // PascalCase converts a string to pascal case, it can take in a string that is both
 // title case and camel case and convert it to camel case.
 func PascalCase(s string) string {
-	s = strings.ToLower(s)
-	words := strings.Fields(s)
-	for i, word := range words {
-		words[i] = strings.ToUpper(word[:1]) + word[1:]
-	}
-	return strings.Join(words, "")
+	c := CamelCase(s)
+	return strings.ToUpper(c[:1]) + c[1:]
 }
