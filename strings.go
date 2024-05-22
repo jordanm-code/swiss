@@ -144,3 +144,19 @@ func PascalCase(s string) string {
 	c := CamelCase(s)
 	return strings.ToUpper(c[:1]) + c[1:]
 }
+
+// SwapCase swaps the case of a string.
+func SwapCase(str string) string {
+	var r string
+	for _, c := range str {
+		switch {
+		case c >= 'a' && c <= 'z':
+			r += string(c - 32)
+		case c >= 'A' && c <= 'Z':
+			r += string(c + 32)
+		default:
+			r += string(c)
+		}
+	}
+	return r
+}
