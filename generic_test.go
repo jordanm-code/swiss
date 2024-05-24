@@ -1,6 +1,8 @@
 package swiss
 
 import (
+	"reflect"
+	"strings"
 	"testing"
 	"time"
 )
@@ -73,5 +75,22 @@ func TestMap(t *testing.T) {
 	s := Map([]string{"a", "b", "c", "c"})
 	if !s["a"] || !s["b"] || !s["c"] || len(s) != 3 {
 		t.Errorf("Map failed (string): %v", s)
+	}
+}
+
+func TestChunk(t *testing.T) {
+	s := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	chunks := Chunk(s, 3)
+
+	want := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10}}
+	if !reflect.DeepEqual(chunks, want) {
+		t.Errorf("Chunk(%v, 3) = %v; want: %v", s, chunks, want)
+	}
+
+	ss := strings.Split("hello world!!", "")
+	strChunks := Chunk(ss, 2)
+	wantStr := [][]string{{"h", "e"}, {"l", "l"}, {"o", " "}, {"w", "o"}, {"r", "l"}, {"d", "!"}, {"!"}}
+	if !reflect.DeepEqual(strChunks, wantStr) {
+		t.Errorf("Chunk(%v, 2) = %v; want: %v", ss, strChunks, wantStr)
 	}
 }
