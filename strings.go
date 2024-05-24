@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"regexp"
 	"strings"
 
 	"golang.org/x/text/cases"
@@ -9,6 +10,14 @@ import (
 )
 
 var Language = language.English
+
+var validEmailRE = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
+
+// IsEmail checks if a string is a valid standard email address.
+// RFC 5322 is too permissive for general use such as quoted strings and local hosts.
+func IsEmail(s string) bool {
+	return validEmailRE.MatchString(s)
+}
 
 // IsUpper checks if a string is all uppercase.
 func IsUpper(s string) bool {
