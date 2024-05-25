@@ -22,6 +22,8 @@ import "go/swiss"
 
 - [Variables](<#variables>)
 - [func CamelCase\(s string\) string](<#CamelCase>)
+- [func Deref\[T any\]\(v \*T\) \(r T\)](<#Deref>)
+- [func FileExists\(filePath string\) bool](<#FileExists>)
 - [func IsAlpha\(s string\) bool](<#IsAlpha>)
 - [func IsAlphaNumeric\(s string\) bool](<#IsAlphaNumeric>)
 - [func IsEmpty\(x interface\{\}\) bool](<#IsEmpty>)
@@ -31,7 +33,9 @@ import "go/swiss"
 - [func IsSnakeCase\(s string\) bool](<#IsSnakeCase>)
 - [func IsUUID\(s string\) bool](<#IsUUID>)
 - [func IsUpper\(s string\) bool](<#IsUpper>)
+- [func Map\[S \~\[\]E, E comparable\]\(s S\) map\[E\]bool](<#Map>)
 - [func PascalCase\(s string\) string](<#PascalCase>)
+- [func PtrTo\[T any\]\(v T\) \*T](<#PtrTo>)
 - [func Reverse\(s string\) string](<#Reverse>)
 - [func SnakeCase\(s string\) string](<#SnakeCase>)
 - [func SwapCase\(str string\) string](<#SwapCase>)
@@ -54,6 +58,24 @@ func CamelCase(s string) string
 ```
 
 CamelCase converts a string to camel case.
+
+<a name="Deref"></a>
+## func [Deref](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L9>)
+
+```go
+func Deref[T any](v *T) (r T)
+```
+
+Deref returns the value that the pointer points to.
+
+<a name="FileExists"></a>
+## func [FileExists](<https://github.com/jordanm-code/swiss/blob/main/file.go#L6>)
+
+```go
+func FileExists(filePath string) bool
+```
+
+FileExists returns true if the file exists
 
 <a name="IsAlpha"></a>
 ## func [IsAlpha](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L24>)
@@ -136,6 +158,15 @@ func IsUpper(s string) bool
 
 IsUpper checks if a string is all uppercase.
 
+<a name="Map"></a>
+## func [Map](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L19>)
+
+```go
+func Map[S ~[]E, E comparable](s S) map[E]bool
+```
+
+Map creates a map from a slice of keys. The value of each key is a boolean indicating whether the key is present in the slice.
+
 <a name="PascalCase"></a>
 ## func [PascalCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L143>)
 
@@ -144,6 +175,15 @@ func PascalCase(s string) string
 ```
 
 PascalCase converts a string to pascal case, it can take in a string that is both title case and camel case and convert it to camel case.
+
+<a name="PtrTo"></a>
+## func [PtrTo](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L4>)
+
+```go
+func PtrTo[T any](v T) *T
+```
+
+PtrTo returns a pointer to the value passed in.
 
 <a name="Reverse"></a>
 ## func [Reverse](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L87>)
