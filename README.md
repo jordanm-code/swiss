@@ -36,6 +36,8 @@ import "go/swiss"
 - [func Map\[S \~\[\]E, E comparable\]\(s S\) map\[E\]bool](<#Map>)
 - [func PascalCase\(s string\) string](<#PascalCase>)
 - [func PtrTo\[T any\]\(v T\) \*T](<#PtrTo>)
+- [func RandomSeed\(\)](<#RandomSeed>)
+- [func RandomString\(length int\) string](<#RandomString>)
 - [func Reverse\(s string\) string](<#Reverse>)
 - [func SnakeCase\(s string\) string](<#SnakeCase>)
 - [func SwapCase\(str string\) string](<#SwapCase>)
@@ -184,6 +186,24 @@ func PtrTo[T any](v T) *T
 ```
 
 PtrTo returns a pointer to the value passed in.
+
+<a name="RandomSeed"></a>
+## func [RandomSeed](<https://github.com/jordanm-code/swiss/blob/main/random.go#L13>)
+
+```go
+func RandomSeed()
+```
+
+RandomSeed will generate a seed based on the current UnixNano.
+
+<a name="RandomString"></a>
+## func [RandomString](<https://github.com/jordanm-code/swiss/blob/main/random.go#L18>)
+
+```go
+func RandomString(length int) string
+```
+
+RandomString creates an alphanumeric string of a given length.
 
 <a name="Reverse"></a>
 ## func [Reverse](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L87>)
