@@ -23,3 +23,18 @@ func Map[S ~[]E, E comparable](s S) map[E]bool {
 	}
 	return m
 }
+
+// Chunk divides a slice into chunks of the specified size.
+func Chunk[T ~[]E, E any](s T, size int) (chunks []T) {
+	if size <= 0 {
+		return
+	}
+	for i := 0; i < len(s); i += size {
+		end := i + size
+		if end > len(s) {
+			end = len(s)
+		}
+		chunks = append(chunks, s[i:end])
+	}
+	return
+}
