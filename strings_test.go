@@ -4,6 +4,30 @@ import (
 	"testing"
 )
 
+func TestIsEmail(t *testing.T) {
+	tests := []struct {
+		input  string
+		output bool
+	}{
+		{"", false},
+		{"a", false},
+		{"a@", false},
+		{"a@b", false},
+		{"a@b.c", false},
+		{"a@b.c.d", false},
+		{`"bob is cool"@gmail.com`, false},
+		{"a@b.c.do", true},
+		{"bob@gmail.com", true},
+		{"bob.smith@yahoo.com", true},
+	}
+
+	for _, test := range tests {
+		if got := IsEmail(test.input); got != test.output {
+			t.Errorf("IsEmail(%q) = %t; want %t", test.input, got, test.output)
+		}
+	}
+}
+
 func TestIsUpper(t *testing.T) {
 	tests := []struct {
 		input  string
