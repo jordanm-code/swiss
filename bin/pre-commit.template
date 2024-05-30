@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-README_FILE=$SCRIPT_DIR/../../README.md
-BIN_DIR=$SCRIPT_DIR/../../bin
-$BIN_DIR/gen_readme.bash
-git add $README_FILE
