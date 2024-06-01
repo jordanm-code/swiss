@@ -41,6 +41,7 @@ import "go/swiss"
 - [func RandomSeed\(\)](<#RandomSeed>)
 - [func RandomString\(length int\) string](<#RandomString>)
 - [func Reverse\(s string\) string](<#Reverse>)
+- [func Slugify\(s string\) string](<#Slugify>)
 - [func SnakeCase\(s string\) string](<#SnakeCase>)
 - [func SwapCase\(str string\) string](<#SwapCase>)
 - [func TitleCase\(s string\) string](<#TitleCase>)
@@ -233,6 +234,15 @@ func Reverse(s string) string
 ```
 
 Reverse returns the string in reverse order. This function is an alias for \[bidi.ReverseString\].
+
+<a name="Slugify"></a>
+## func [Slugify](<https://github.com/jordanm-code/swiss/blob/main/url.go#L8>)
+
+```go
+func Slugify(s string) string
+```
+
+
 
 <a name="SnakeCase"></a>
 ## func [SnakeCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L102>)
