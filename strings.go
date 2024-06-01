@@ -169,3 +169,13 @@ func SwapCase(str string) string {
 	}
 	return r
 }
+
+// Slugify will take a string and create a dash separated string for use in URLs.
+func Slugify(s string) string {
+	s = strings.ToLower(s)
+	reg := regexp.MustCompile("[^a-z0-9]+")
+	s = reg.ReplaceAllString(s, "-")
+	s = strings.Trim(s, "-")
+
+	return s
+}
