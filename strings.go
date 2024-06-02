@@ -1,7 +1,9 @@
 package swiss
 
 import (
+	"net/url"
 	"regexp"
+	"slices"
 	"strings"
 
 	"golang.org/x/text/cases"
@@ -17,6 +19,12 @@ var validEmailRE = regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-
 // RFC 5322 is too permissive for general use such as quoted strings and local hosts.
 func IsEmail(s string) bool {
 	return validEmailRE.MatchString(s)
+}
+
+// IsURL checks if a string is a valid URL.
+func IsURL(s string) bool {
+	u, err := url.Parse(s)
+	return err == nil && u.Scheme != "" && u.Host != ""
 }
 
 // IsUpper checks if a string is all uppercase.
@@ -178,4 +186,13 @@ func Slugify(s string) string {
 	s = strings.Trim(s, "-")
 
 	return s
+}
+
+var findURLs = regexp.MustCompile(`(https?://[^\s]+)`)
+
+// ExtractURLs will take a string and return all URLs found within it in the
+// order they are encountered.
+func ExtractURLs(s string) []string {
+	f := findURLs.FindAllString(s, -1)
+	return slices.DeleteFunc(f, func(s string) bool { return !IsURL(s) })
 }
