@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"slices"
 	"testing"
 )
 
@@ -388,6 +389,51 @@ func TestSlugify(t *testing.T) {
 	for _, test := range tests {
 		if got := Slugify(test.input); got != test.output {
 			t.Errorf("Slugify(%q) = %q; want %q", test.input, got, test.output)
+		}
+	}
+}
+
+func TestIsURL(t *testing.T) {
+	tests := []struct {
+		input  string
+		output bool
+	}{
+		{"", false},
+		{"hello", false},
+		{"http::://not.valid/??", false},
+		{"google.com", false},
+		{"/foo/bar", false},
+		{"http://example.com", true},
+		{"https://example", true},
+		{"http://subdomain.example.com", true},
+	}
+
+	for _, test := range tests {
+		if got := IsURL(test.input); got != test.output {
+			t.Errorf("IsURL(%q) = %t; want %t", test.input, got, test.output)
+		}
+	}
+}
+
+func TestExtractURLs(t *testing.T) {
+	tests := []struct {
+		input  string
+		output []string
+	}{
+		{"", nil},
+		{"hello", nil},
+		{"hello world", nil},
+		{"hello http://example.com", []string{"http://example.com"}},
+		{"hello https://example.com", []string{"https://example.com"}},
+		{"hello http://example.com world", []string{"http://example.com"}},
+		{"hello http://example.com world http://example2.com", []string{"http://example.com", "http://example2.com"}},
+		{"hello http://example.com world https://example.com", []string{"http://example.com", "https://example.com"}},
+		{"hello http://example.com world https://", []string{"http://example.com"}},
+	}
+
+	for _, test := range tests {
+		if got := ExtractURLs(test.input); slices.Compare(got, test.output) != 0 {
+			t.Errorf("ExtractURLs(%q) = %q; want %q", test.input, got, test.output)
 		}
 	}
 }
