@@ -1,15 +1,14 @@
 package swiss
 
 import (
-	"testing"
+	"fmt"
 )
 
-func TestFileExists(t *testing.T) {
-	if !FileExists("file_test.go") {
-		t.Error("file_test.go should exist")
-	}
+func ExampleFileExists() {
+	fmt.Printf("file_test.go exists: %v\n", FileExists("file_test.go"))
+	fmt.Printf("file_test.go.not exists: %v\n", FileExists("file_test.go.not"))
 
-	if FileExists("file_test.go.not") {
-		t.Error("file_test.go.not should not exist")
-	}
+	// Output:
+	// file_test.go exists: true
+	// file_test.go.not exists: false
 }
