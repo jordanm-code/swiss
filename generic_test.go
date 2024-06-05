@@ -35,6 +35,16 @@ func TestPtrTo(t *testing.T) {
 	}
 }
 
+func ExamplePtrTo() {
+	printString := func(s *string) {
+		fmt.Println(*s)
+	}
+
+	printString(PtrTo("easy"))
+	// Output:
+	// easy
+}
+
 func TestDeref(t *testing.T) {
 	s := "string"
 	if p := Deref(&s); p != s {
