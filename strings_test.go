@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"fmt"
 	"slices"
 	"testing"
 )
@@ -144,6 +145,17 @@ func TestCamelCase(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleCamelCase() {
+	jsonKeys := []string{"first_name", "last_name"}
+	for _, key := range jsonKeys {
+		fmt.Println(CamelCase(key))
+	}
+
+	// Output:
+	// firstName
+	// lastName
 }
 
 func TestPascalCase(t *testing.T) {
