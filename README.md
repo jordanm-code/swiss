@@ -101,6 +101,41 @@ func Chunk[T ~[]E, E any](s T, size int) (chunks []T)
 
 Chunk divides a slice into chunks of the specified size.
 
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
+
+send := func(emails []string) {
+	// send emails
+	fmt.Println("Sent emails to:", emails)
+}
+
+for _, chunk := range Chunk(emailList, 2) {
+	send(chunk)
+	time.Sleep(1 * time.Millisecond)
+}
+
+// Output:
+// Sent emails to: [foo@bar.com bat@baz.com]
+// Sent emails to: [hello@world.com kitten@dog.com]
+// Sent emails to: [old@aol.com]
+```
+
+#### Output
+
+```
+Sent emails to: [foo@bar.com bat@baz.com]
+Sent emails to: [hello@world.com kitten@dog.com]
+Sent emails to: [old@aol.com]
+```
+
+</p>
+</details>
+
 <a name="Deref"></a>
 ## func Deref
 
@@ -315,6 +350,30 @@ func PtrTo[T any](v T) *T
 ```
 
 PtrTo returns a pointer to the value passed in.
+
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+printString := func(s *string) {
+	fmt.Println(*s)
+}
+
+printString(PtrTo("easy"))
+// Output:
+// easy
+```
+
+#### Output
+
+```
+easy
+```
+
+</p>
+</details>
 
 <a name="RandomSeed"></a>
 ## func RandomSeed
