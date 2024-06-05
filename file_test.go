@@ -5,10 +5,15 @@ import (
 )
 
 func ExampleFileExists() {
-	fmt.Printf("file_test.go exists: %v\n", FileExists("file_test.go"))
-	fmt.Printf("file_test.go.not exists: %v\n", FileExists("file_test.go.not"))
+	if FileExists("file_test.go") {
+		fmt.Println("file_test.go exists")
+	}
+
+	if !FileExists("file_test.go.not") {
+		fmt.Println("file_test.go.not not exists")
+	}
 
 	// Output:
-	// file_test.go exists: true
-	// file_test.go.not exists: false
+	// file_test.go exists
+	// file_test.go.not not exists
 }
