@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"fmt"
 	"reflect"
 	"strings"
 	"testing"
@@ -93,4 +94,23 @@ func TestChunk(t *testing.T) {
 	if !reflect.DeepEqual(strChunks, wantStr) {
 		t.Errorf("Chunk(%v, 2) = %v; want: %v", ss, strChunks, wantStr)
 	}
+}
+
+func ExampleChunk() {
+	emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
+
+	send := func(emails []string) {
+		// send emails
+		fmt.Println("Sent emails to:", emails)
+	}
+
+	for _, chunk := range Chunk(emailList, 2) {
+		send(chunk)
+		time.Sleep(1 * time.Millisecond)
+	}
+
+	// Output:
+	// Sent emails to: [foo@bar.com bat@baz.com]
+	// Sent emails to: [hello@world.com kitten@dog.com]
+	// Sent emails to: [old@aol.com]
 }
