@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"fmt"
 	"reflect"
 	"strings"
 	"testing"
@@ -93,4 +94,29 @@ func TestChunk(t *testing.T) {
 	if !reflect.DeepEqual(strChunks, wantStr) {
 		t.Errorf("Chunk(%v, 2) = %v; want: %v", ss, strChunks, wantStr)
 	}
+}
+
+func TestDeduplicate(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5, 5, 5}, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 4, 1, 2, 7, 9, 20, 4, 2, 8}, []int{1, 2, 4, 7, 9, 20, 8}},
+	}
+
+	for _, test := range tests {
+		if got := Deduplicate(test.input); !reflect.DeepEqual(got, test.expected) {
+			t.Errorf("Deduplicate(%v) = %v; want %v", test.input, got, test.expected)
+		}
+	}
+}
+
+func ExampleDeduplicate() {
+	names := []string{"Alice", "Bob", "Alice", "Charlie", "Bob", "David"}
+	fmt.Println(Deduplicate(names))
+
+	// Output:
+	// [Alice Bob Charlie David]
 }
