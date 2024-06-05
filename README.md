@@ -23,6 +23,7 @@ import "go/swiss"
 - [Variables](<#variables>)
 - [func CamelCase\(s string\) string](<#CamelCase>)
 - [func Chunk\[T \~\[\]E, E any\]\(s T, size int\) \(chunks \[\]T\)](<#Chunk>)
+- [func Deduplicate\[T \~\[\]E, E comparable\]\(s T\) \(r T\)](<#Deduplicate>)
 - [func Deref\[T any\]\(v \*T\) \(r T\)](<#Deref>)
 - [func ExtractURLs\(s string\) \[\]string](<#ExtractURLs>)
 - [func FileExists\(filePath string\) bool](<#FileExists>)
@@ -101,36 +102,32 @@ func Chunk[T ~[]E, E any](s T, size int) (chunks []T)
 
 Chunk divides a slice into chunks of the specified size.
 
+<a name="Deduplicate"></a>
+## func Deduplicate
+
+```go
+func Deduplicate[T ~[]E, E comparable](s T) (r T)
+```
+
+Deduplicate removes duplicate elements from a slice while preserving the order of the elements.
+
 <details><summary>Example</summary>
 <p>
 
 
 
 ```go
-emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
-
-send := func(emails []string) {
-	// send emails
-	fmt.Println("Sent emails to:", emails)
-}
-
-for _, chunk := range Chunk(emailList, 2) {
-	send(chunk)
-	time.Sleep(1 * time.Millisecond)
-}
+names := []string{"Alice", "Bob", "Alice", "Charlie", "Bob", "David"}
+fmt.Println(Deduplicate(names))
 
 // Output:
-// Sent emails to: [foo@bar.com bat@baz.com]
-// Sent emails to: [hello@world.com kitten@dog.com]
-// Sent emails to: [old@aol.com]
+// [Alice Bob Charlie David]
 ```
 
 #### Output
 
 ```
-Sent emails to: [foo@bar.com bat@baz.com]
-Sent emails to: [hello@world.com kitten@dog.com]
-Sent emails to: [old@aol.com]
+[Alice Bob Charlie David]
 ```
 
 </p>
