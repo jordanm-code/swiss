@@ -7,6 +7,9 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+
 jobs:
 
   build:
@@ -24,3 +27,11 @@ jobs:
 
     - name: Generate README.md
       run: ./bin/gen_readme.bash
+
+    - name: Commit & Push
+      run: |
+        git config --global user.email "auto@swiss"
+        git config --global user.name "Git Hub Action go.yml"
+        git add README.md
+        git commit -m "ran ./bin/gen_readme.bash"
+        git push origin main
