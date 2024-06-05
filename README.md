@@ -91,6 +91,30 @@ func FileExists(filePath string) bool
 
 FileExists returns true if the file exists
 
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+fmt.Printf("file_test.go exists: %v\n", FileExists("file_test.go"))
+fmt.Printf("file_test.go.not exists: %v\n", FileExists("file_test.go.not"))
+
+// Output:
+// file_test.go exists: true
+// file_test.go.not exists: false
+```
+
+#### Output
+
+```
+file_test.go exists: true
+file_test.go.not exists: false
+```
+
+</p>
+</details>
+
 <a name="IsAlpha"></a>
 ## func [IsAlpha](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L33>)
 
@@ -236,13 +260,13 @@ func Reverse(s string) string
 Reverse returns the string in reverse order. This function is an alias for \[bidi.ReverseString\].
 
 <a name="Slugify"></a>
-## func [Slugify](<https://github.com/jordanm-code/swiss/blob/main/url.go#L8>)
+## func [Slugify](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L174>)
 
 ```go
 func Slugify(s string) string
 ```
 
-
+Slugify will take a string and create a dash separated string for use in URLs.
 
 <a name="SnakeCase"></a>
 ## func [SnakeCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L102>)
