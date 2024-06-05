@@ -123,6 +123,31 @@ func TestChunk(t *testing.T) {
 	}
 }
 
+<<<<<<< issue-17
+func TestDeduplicate(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 3, 4, 5, 5, 5}, []int{1, 2, 3, 4, 5}},
+		{[]int{1, 2, 4, 1, 2, 7, 9, 20, 4, 2, 8}, []int{1, 2, 4, 7, 9, 20, 8}},
+	}
+
+	for _, test := range tests {
+		if got := Deduplicate(test.input); !reflect.DeepEqual(got, test.expected) {
+			t.Errorf("Deduplicate(%v) = %v; want %v", test.input, got, test.expected)
+		}
+	}
+}
+
+func ExampleDeduplicate() {
+	names := []string{"Alice", "Bob", "Alice", "Charlie", "Bob", "David"}
+	fmt.Println(Deduplicate(names))
+
+	// Output:
+	// [Alice Bob Charlie David]
+=======
 func ExampleChunk() {
 	emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
 
@@ -140,4 +165,5 @@ func ExampleChunk() {
 	// Sent emails to: [foo@bar.com bat@baz.com]
 	// Sent emails to: [hello@world.com kitten@dog.com]
 	// Sent emails to: [old@aol.com]
+>>>>>>> main
 }

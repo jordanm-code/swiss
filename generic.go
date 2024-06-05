@@ -38,3 +38,16 @@ func Chunk[T ~[]E, E any](s T, size int) (chunks []T) {
 	}
 	return
 }
+
+// Deduplicate removes duplicate elements from a slice while
+// preserving the order of the elements.
+func Deduplicate[T ~[]E, E comparable](s T) (r T) {
+	m := map[E]bool{}
+	for _, v := range s {
+		if !m[v] {
+			r = append(r, v)
+			m[v] = true
+		}
+	}
+	return
+}
