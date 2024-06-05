@@ -123,7 +123,6 @@ func TestChunk(t *testing.T) {
 	}
 }
 
-<<<<<<< issue-17
 func TestDeduplicate(t *testing.T) {
 	tests := []struct {
 		input    []int
@@ -147,23 +146,4 @@ func ExampleDeduplicate() {
 
 	// Output:
 	// [Alice Bob Charlie David]
-=======
-func ExampleChunk() {
-	emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
-
-	send := func(emails []string) {
-		// send emails
-		fmt.Println("Sent emails to:", emails)
-	}
-
-	for _, chunk := range Chunk(emailList, 2) {
-		send(chunk)
-		time.Sleep(1 * time.Millisecond)
-	}
-
-	// Output:
-	// Sent emails to: [foo@bar.com bat@baz.com]
-	// Sent emails to: [hello@world.com kitten@dog.com]
-	// Sent emails to: [old@aol.com]
->>>>>>> main
 }
