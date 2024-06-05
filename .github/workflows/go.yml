@@ -27,6 +27,7 @@ jobs:
       run: ./bin/gen_readme.bash
 
     - name: Commit & Push
+      continue-on-error: true
       run: |
         git config --global user.email "auto@swiss"
         git config --global user.name "Git Hub Action go.yml"
