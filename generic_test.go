@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"fmt"
 	"reflect"
 	"strings"
 	"testing"
@@ -32,6 +33,16 @@ func TestPtrTo(t *testing.T) {
 	if p := PtrTo(b); *p != b {
 		t.Errorf("Deref(PtrTo(%t)) = %t; want %t", b, Deref(p), b)
 	}
+}
+
+func ExamplePtrTo() {
+	printString := func(s *string) {
+		fmt.Println(*s)
+	}
+
+	printString(PtrTo("easy"))
+	// Output:
+	// easy
 }
 
 func TestDeref(t *testing.T) {
