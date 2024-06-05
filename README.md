@@ -24,6 +24,7 @@ import "go/swiss"
 - [func CamelCase\(s string\) string](<#CamelCase>)
 - [func Chunk\[T \~\[\]E, E any\]\(s T, size int\) \(chunks \[\]T\)](<#Chunk>)
 - [func Deref\[T any\]\(v \*T\) \(r T\)](<#Deref>)
+- [func ExtractURLs\(s string\) \[\]string](<#ExtractURLs>)
 - [func FileExists\(filePath string\) bool](<#FileExists>)
 - [func IsAlpha\(s string\) bool](<#IsAlpha>)
 - [func IsAlphaNumeric\(s string\) bool](<#IsAlphaNumeric>)
@@ -33,6 +34,7 @@ import "go/swiss"
 - [func IsLower\(s string\) bool](<#IsLower>)
 - [func IsNumeric\(s string\) bool](<#IsNumeric>)
 - [func IsSnakeCase\(s string\) bool](<#IsSnakeCase>)
+- [func IsURL\(s string\) bool](<#IsURL>)
 - [func IsUUID\(s string\) bool](<#IsUUID>)
 - [func IsUpper\(s string\) bool](<#IsUpper>)
 - [func Map\[S \~\[\]E, E comparable\]\(s S\) map\[E\]bool](<#Map>)
@@ -81,6 +83,15 @@ func Deref[T any](v *T) (r T)
 ```
 
 Deref returns the value that the pointer points to.
+
+<a name="ExtractURLs"></a>
+## func ExtractURLs
+
+```go
+func ExtractURLs(s string) []string
+```
+
+ExtractURLs will take a string and return all URLs found within it in the order they are encountered.
 
 <a name="FileExists"></a>
 ## func FileExists
@@ -186,6 +197,15 @@ func IsSnakeCase(s string) bool
 ```
 
 IsSnakeCase checks to see if supplied string is in snake case.
+
+<a name="IsURL"></a>
+## func IsURL
+
+```go
+func IsURL(s string) bool
+```
+
+IsURL checks if a string is a valid URL.
 
 <a name="IsUUID"></a>
 ## func IsUUID
