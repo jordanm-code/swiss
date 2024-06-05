@@ -35,6 +35,16 @@ func TestPtrTo(t *testing.T) {
 	}
 }
 
+func ExamplePtrTo() {
+	printString := func(s *string) {
+		fmt.Println(*s)
+	}
+
+	printString(PtrTo("easy"))
+	// Output:
+	// easy
+}
+
 func TestDeref(t *testing.T) {
 	s := "string"
 	if p := Deref(&s); p != s {
@@ -66,7 +76,6 @@ func TestDeref(t *testing.T) {
 	}
 }
 
-// TestMap tests the Map function.
 func TestMap(t *testing.T) {
 	i := Map([]int{1, 2, 3, 3})
 	if !i[1] || !i[2] || !i[3] || len(i) != 3 {
@@ -77,6 +86,24 @@ func TestMap(t *testing.T) {
 	if !s["a"] || !s["b"] || !s["c"] || len(s) != 3 {
 		t.Errorf("Map failed (string): %v", s)
 	}
+}
+
+func ExampleMap() {
+	nums := []int{5, 9, 2, 0, 7, 12, 3, 26}
+	m := Map(nums) // O(n)
+
+	find := []int{5, 10}
+	for _, n := range find {
+		if m[n] { // O(1)
+			fmt.Println("Found", n)
+		} else {
+			fmt.Println("Not found", n)
+		}
+	}
+
+	// Output:
+	// Found 5
+	// Not found 10
 }
 
 func TestChunk(t *testing.T) {
@@ -96,6 +123,7 @@ func TestChunk(t *testing.T) {
 	}
 }
 
+<<<<<<< issue-17
 func TestDeduplicate(t *testing.T) {
 	tests := []struct {
 		input    []int
@@ -119,4 +147,23 @@ func ExampleDeduplicate() {
 
 	// Output:
 	// [Alice Bob Charlie David]
+=======
+func ExampleChunk() {
+	emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
+
+	send := func(emails []string) {
+		// send emails
+		fmt.Println("Sent emails to:", emails)
+	}
+
+	for _, chunk := range Chunk(emailList, 2) {
+		send(chunk)
+		time.Sleep(1 * time.Millisecond)
+	}
+
+	// Output:
+	// Sent emails to: [foo@bar.com bat@baz.com]
+	// Sent emails to: [hello@world.com kitten@dog.com]
+	// Sent emails to: [old@aol.com]
+>>>>>>> main
 }

@@ -66,6 +66,32 @@ func CamelCase(s string) string
 
 CamelCase converts a string to camel case.
 
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+jsonKeys := []string{"first_name", "last_name"}
+for _, key := range jsonKeys {
+	fmt.Println(CamelCase(key))
+}
+
+// Output:
+// firstName
+// lastName
+```
+
+#### Output
+
+```
+firstName
+lastName
+```
+
+</p>
+</details>
+
 <a name="Chunk"></a>
 ## func Chunk
 
@@ -74,6 +100,41 @@ func Chunk[T ~[]E, E any](s T, size int) (chunks []T)
 ```
 
 Chunk divides a slice into chunks of the specified size.
+
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+emailList := []string{"foo@bar.com", "bat@baz.com", "hello@world.com", "kitten@dog.com", "old@aol.com"}
+
+send := func(emails []string) {
+	// send emails
+	fmt.Println("Sent emails to:", emails)
+}
+
+for _, chunk := range Chunk(emailList, 2) {
+	send(chunk)
+	time.Sleep(1 * time.Millisecond)
+}
+
+// Output:
+// Sent emails to: [foo@bar.com bat@baz.com]
+// Sent emails to: [hello@world.com kitten@dog.com]
+// Sent emails to: [old@aol.com]
+```
+
+#### Output
+
+```
+Sent emails to: [foo@bar.com bat@baz.com]
+Sent emails to: [hello@world.com kitten@dog.com]
+Sent emails to: [old@aol.com]
+```
+
+</p>
+</details>
 
 <a name="Deref"></a>
 ## func Deref
@@ -108,19 +169,24 @@ FileExists returns true if the file exists
 
 
 ```go
-fmt.Printf("file_test.go exists: %v\n", FileExists("file_test.go"))
-fmt.Printf("file_test.go.not exists: %v\n", FileExists("file_test.go.not"))
+if FileExists("file_test.go") {
+	fmt.Println("file_test.go exists")
+}
+
+if !FileExists("file_test.go.not") {
+	fmt.Println("file_test.go.not not exists")
+}
 
 // Output:
-// file_test.go exists: true
-// file_test.go.not exists: false
+// file_test.go exists
+// file_test.go.not not exists
 ```
 
 #### Output
 
 ```
-file_test.go exists: true
-file_test.go.not exists: false
+file_test.go exists
+file_test.go.not not exists
 ```
 
 </p>
@@ -234,6 +300,39 @@ func Map[S ~[]E, E comparable](s S) map[E]bool
 
 Map creates a map from a slice of keys. The value of each key is a boolean indicating whether the key is present in the slice.
 
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+nums := []int{5, 9, 2, 0, 7, 12, 3, 26}
+m := Map(nums) // O(n)
+
+find := []int{5, 10}
+for _, n := range find {
+	if m[n] { // O(1)
+		fmt.Println("Found", n)
+	} else {
+		fmt.Println("Not found", n)
+	}
+}
+
+// Output:
+// Found 5
+// Not found 10
+```
+
+#### Output
+
+```
+Found 5
+Not found 10
+```
+
+</p>
+</details>
+
 <a name="PascalCase"></a>
 ## func PascalCase
 
@@ -251,6 +350,30 @@ func PtrTo[T any](v T) *T
 ```
 
 PtrTo returns a pointer to the value passed in.
+
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+printString := func(s *string) {
+	fmt.Println(*s)
+}
+
+printString(PtrTo("easy"))
+// Output:
+// easy
+```
+
+#### Output
+
+```
+easy
+```
+
+</p>
+</details>
 
 <a name="RandomSeed"></a>
 ## func RandomSeed
