@@ -56,7 +56,7 @@ var Language = language.English
 ```
 
 <a name="CamelCase"></a>
-## func [CamelCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L134>)
+## func CamelCase
 
 ```go
 func CamelCase(s string) string
@@ -65,7 +65,7 @@ func CamelCase(s string) string
 CamelCase converts a string to camel case.
 
 <a name="Chunk"></a>
-## func [Chunk](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L28>)
+## func Chunk
 
 ```go
 func Chunk[T ~[]E, E any](s T, size int) (chunks []T)
@@ -74,7 +74,7 @@ func Chunk[T ~[]E, E any](s T, size int) (chunks []T)
 Chunk divides a slice into chunks of the specified size.
 
 <a name="Deref"></a>
-## func [Deref](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L9>)
+## func Deref
 
 ```go
 func Deref[T any](v *T) (r T)
@@ -83,7 +83,7 @@ func Deref[T any](v *T) (r T)
 Deref returns the value that the pointer points to.
 
 <a name="FileExists"></a>
-## func [FileExists](<https://github.com/jordanm-code/swiss/blob/main/file.go#L6>)
+## func FileExists
 
 ```go
 func FileExists(filePath string) bool
@@ -116,7 +116,7 @@ file_test.go.not exists: false
 </details>
 
 <a name="IsAlpha"></a>
-## func [IsAlpha](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L33>)
+## func IsAlpha
 
 ```go
 func IsAlpha(s string) bool
@@ -125,7 +125,7 @@ func IsAlpha(s string) bool
 IsAlpha checks if a string is all alphabetic characters.
 
 <a name="IsAlphaNumeric"></a>
-## func [IsAlphaNumeric](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L53>)
+## func IsAlphaNumeric
 
 ```go
 func IsAlphaNumeric(s string) bool
@@ -134,7 +134,7 @@ func IsAlphaNumeric(s string) bool
 IsAlphaNumeric checks if a string is all alphanumeric characters.
 
 <a name="IsEmail"></a>
-## func [IsEmail](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L18>)
+## func IsEmail
 
 ```go
 func IsEmail(s string) bool
@@ -143,7 +143,7 @@ func IsEmail(s string) bool
 IsEmail checks if a string is a valid standard email address. RFC 5322 is too permissive for general use such as quoted strings and local hosts.
 
 <a name="IsEmpty"></a>
-## func [IsEmpty](<https://github.com/jordanm-code/swiss/blob/main/reflection.go#L6>)
+## func IsEmpty
 
 ```go
 func IsEmpty(x interface{}) bool
@@ -152,7 +152,7 @@ func IsEmpty(x interface{}) bool
 IsEmpty checks if the given value is empty/zero value.
 
 <a name="IsHexChar"></a>
-## func [IsHexChar](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L63>)
+## func IsHexChar
 
 ```go
 func IsHexChar(c byte) bool
@@ -161,7 +161,7 @@ func IsHexChar(c byte) bool
 IsHexChar checks if a character is a valid hexadecimal character.
 
 <a name="IsLower"></a>
-## func [IsLower](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L28>)
+## func IsLower
 
 ```go
 func IsLower(s string) bool
@@ -170,7 +170,7 @@ func IsLower(s string) bool
 IsLower checks if a string is all lowercase.
 
 <a name="IsNumeric"></a>
-## func [IsNumeric](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L43>)
+## func IsNumeric
 
 ```go
 func IsNumeric(s string) bool
@@ -179,7 +179,7 @@ func IsNumeric(s string) bool
 IsNumeric checks if a string is all numeric characters.
 
 <a name="IsSnakeCase"></a>
-## func [IsSnakeCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L68>)
+## func IsSnakeCase
 
 ```go
 func IsSnakeCase(s string) bool
@@ -188,7 +188,7 @@ func IsSnakeCase(s string) bool
 IsSnakeCase checks to see if supplied string is in snake case.
 
 <a name="IsUUID"></a>
-## func [IsUUID](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L74>)
+## func IsUUID
 
 ```go
 func IsUUID(s string) bool
@@ -197,7 +197,7 @@ func IsUUID(s string) bool
 IsUUID will take a string and determine if it is a valid UUID, it will return true if it is and false if it is not.
 
 <a name="IsUpper"></a>
-## func [IsUpper](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L23>)
+## func IsUpper
 
 ```go
 func IsUpper(s string) bool
@@ -206,7 +206,7 @@ func IsUpper(s string) bool
 IsUpper checks if a string is all uppercase.
 
 <a name="Map"></a>
-## func [Map](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L19>)
+## func Map
 
 ```go
 func Map[S ~[]E, E comparable](s S) map[E]bool
@@ -215,7 +215,7 @@ func Map[S ~[]E, E comparable](s S) map[E]bool
 Map creates a map from a slice of keys. The value of each key is a boolean indicating whether the key is present in the slice.
 
 <a name="PascalCase"></a>
-## func [PascalCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L152>)
+## func PascalCase
 
 ```go
 func PascalCase(s string) string
@@ -224,7 +224,7 @@ func PascalCase(s string) string
 PascalCase converts a string to pascal case, it can take in a string that is both title case and camel case and convert it to camel case.
 
 <a name="PtrTo"></a>
-## func [PtrTo](<https://github.com/jordanm-code/swiss/blob/main/generic.go#L4>)
+## func PtrTo
 
 ```go
 func PtrTo[T any](v T) *T
@@ -233,7 +233,7 @@ func PtrTo[T any](v T) *T
 PtrTo returns a pointer to the value passed in.
 
 <a name="RandomSeed"></a>
-## func [RandomSeed](<https://github.com/jordanm-code/swiss/blob/main/random.go#L13>)
+## func RandomSeed
 
 ```go
 func RandomSeed()
@@ -242,7 +242,7 @@ func RandomSeed()
 RandomSeed will generate a seed based on the current UnixNano.
 
 <a name="RandomString"></a>
-## func [RandomString](<https://github.com/jordanm-code/swiss/blob/main/random.go#L18>)
+## func RandomString
 
 ```go
 func RandomString(length int) string
@@ -251,7 +251,7 @@ func RandomString(length int) string
 RandomString creates an alphanumeric string of a given length.
 
 <a name="Reverse"></a>
-## func [Reverse](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L96>)
+## func Reverse
 
 ```go
 func Reverse(s string) string
@@ -260,7 +260,7 @@ func Reverse(s string) string
 Reverse returns the string in reverse order. This function is an alias for \[bidi.ReverseString\].
 
 <a name="Slugify"></a>
-## func [Slugify](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L174>)
+## func Slugify
 
 ```go
 func Slugify(s string) string
@@ -269,7 +269,7 @@ func Slugify(s string) string
 Slugify will take a string and create a dash separated string for use in URLs.
 
 <a name="SnakeCase"></a>
-## func [SnakeCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L102>)
+## func SnakeCase
 
 ```go
 func SnakeCase(s string) string
@@ -278,7 +278,7 @@ func SnakeCase(s string) string
 SnakeCase converts a string to snake case. Inputs can be space separated, camel case, or pascal case.
 
 <a name="SwapCase"></a>
-## func [SwapCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L158>)
+## func SwapCase
 
 ```go
 func SwapCase(str string) string
@@ -287,7 +287,7 @@ func SwapCase(str string) string
 SwapCase swaps the case of a string.
 
 <a name="TitleCase"></a>
-## func [TitleCase](<https://github.com/jordanm-code/swiss/blob/main/strings.go#L129>)
+## func TitleCase
 
 ```go
 func TitleCase(s string) string
