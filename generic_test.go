@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"fmt"
 	"reflect"
 	"strings"
 	"testing"
@@ -65,7 +66,6 @@ func TestDeref(t *testing.T) {
 	}
 }
 
-// TestMap tests the Map function.
 func TestMap(t *testing.T) {
 	i := Map([]int{1, 2, 3, 3})
 	if !i[1] || !i[2] || !i[3] || len(i) != 3 {
@@ -76,6 +76,24 @@ func TestMap(t *testing.T) {
 	if !s["a"] || !s["b"] || !s["c"] || len(s) != 3 {
 		t.Errorf("Map failed (string): %v", s)
 	}
+}
+
+func ExampleMap() {
+	nums := []int{5, 9, 2, 0, 7, 12, 3, 26}
+	m := Map(nums) // O(n)
+
+	find := []int{5, 10}
+	for _, n := range find {
+		if m[n] { // O(1)
+			fmt.Println("Found", n)
+		} else {
+			fmt.Println("Not found", n)
+		}
+	}
+
+	// Output:
+	// Found 5
+	// Not found 10
 }
 
 func TestChunk(t *testing.T) {
