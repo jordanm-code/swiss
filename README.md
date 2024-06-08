@@ -43,6 +43,7 @@ import "go/swiss"
 - [func PtrTo\[T any\]\(v T\) \*T](<#PtrTo>)
 - [func RandomSeed\(\)](<#RandomSeed>)
 - [func RandomString\(length int\) string](<#RandomString>)
+- [func Read\(r interface\{\}\) \(string, error\)](<#Read>)
 - [func Reverse\(s string\) string](<#Reverse>)
 - [func Slugify\(s string\) string](<#Slugify>)
 - [func SnakeCase\(s string\) string](<#SnakeCase>)
@@ -51,6 +52,12 @@ import "go/swiss"
 
 
 ## Variables
+
+<a name="ErrReaderNotFound"></a>
+
+```go
+var ErrReaderNotFound = errors.New("reader could not be found")
+```
 
 <a name="Language"></a>
 
@@ -389,6 +396,64 @@ func RandomString(length int) string
 ```
 
 RandomString creates an alphanumeric string of a given length.
+
+<a name="Read"></a>
+## func Read
+
+```go
+func Read(r interface{}) (string, error)
+```
+
+Read will read from [io.Reader](<https://pkg.go.dev/io/#Reader>) and return the content as a string.
+
+When a struct is provided, the first [io.Reader](<https://pkg.go.dev/io/#Reader>) that is encountered will be read. [io.ReadCloser](<https://pkg.go.dev/io/#ReadCloser>) will be closed after reading.
+
+When a struct pointer is provided, [io.Reader](<https://pkg.go.dev/io/#Reader>) and [io.ReadCloser](<https://pkg.go.dev/io/#ReadCloser>) will automatically rewind by swapping out the reader with a new [io.ReadCloser](<https://pkg.go.dev/io/#ReadCloser>) with a nopCloser or a [bytes.Reader](<https://pkg.go.dev/bytes/#Reader>) that contains the same content.
+
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+request, err := http.NewRequest(http.MethodGet, "https://example.com", nil)
+if err != nil {
+	panic(err)
+}
+request.Body = io.NopCloser(bytes.NewReader([]byte("<html></html>")))
+
+body, err := Read(request) // pass in *http.Request; will rewind
+if err != nil {
+	panic(err)
+}
+fmt.Println(body)
+
+body, err = Read(request.Body) // pass in io.ReadCloser; will not rewind
+if err != nil {
+	panic(err)
+}
+fmt.Println(body)
+
+body, err = Read(request) // pass in request; body is empty
+if err != nil {
+	panic(err)
+}
+fmt.Println(body)
+
+// Output:
+// <html></html>
+// <html></html>
+```
+
+#### Output
+
+```
+<html></html>
+<html></html>
+```
+
+</p>
+</details>
 
 <a name="Reverse"></a>
 ## func Reverse
