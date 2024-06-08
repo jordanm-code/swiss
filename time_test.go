@@ -1,6 +1,7 @@
 package swiss
 
 import (
+	"fmt"
 	"testing"
 	"time"
 )
@@ -36,10 +37,18 @@ func TestTimeFromHumanReadable(t *testing.T) {
 			continue
 		}
 
+		fmt.Println(got)
 		if !withinDurationJitter(got, test.want, time.Second) {
 			t.Errorf("TimeFromHumanReadable(%v) = %v; want %v", test.input, got, test.want)
 		}
 	}
+}
+
+func ExampleTimeFromHumanReadable() {
+	fmt.Println(TimeFromHumanReadable("yesterday at 4AM"))
+
+	// Output:
+	// 2024-06-07 04:00:00 +0000 UTC
 }
 
 // withinDurationJitter checks if two times are withing a given duration of
