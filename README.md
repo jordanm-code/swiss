@@ -48,6 +48,7 @@ import "go/swiss"
 - [func Slugify\(s string\) string](<#Slugify>)
 - [func SnakeCase\(s string\) string](<#SnakeCase>)
 - [func SwapCase\(str string\) string](<#SwapCase>)
+- [func TimeFromHumanReadable\(s string\) \(time.Time, error\)](<#TimeFromHumanReadable>)
 - [func TitleCase\(s string\) string](<#TitleCase>)
 
 
@@ -57,6 +58,12 @@ import "go/swiss"
 
 ```go
 var ErrReaderNotFound = errors.New("reader could not be found")
+```
+
+<a name="ErrTimeFormat"></a>
+
+```go
+var ErrTimeFormat = errors.New("unrecognized time format")
 ```
 
 <a name="Language"></a>
@@ -490,6 +497,36 @@ func SwapCase(str string) string
 ```
 
 SwapCase swaps the case of a string.
+
+<a name="TimeFromHumanReadable"></a>
+## func TimeFromHumanReadable
+
+```go
+func TimeFromHumanReadable(s string) (time.Time, error)
+```
+
+TimeFromHumanReadable will take in a string and try to parse out a time.
+
+<details><summary>Example</summary>
+<p>
+
+
+
+```go
+fmt.Println(TimeFromHumanReadable("yesterday at 4AM"))
+
+// Output:
+// 2024-06-07 04:00:00 +0000 UTC
+```
+
+#### Output
+
+```
+2024-06-07 04:00:00 +0000 UTC
+```
+
+</p>
+</details>
 
 <a name="TitleCase"></a>
 ## func TitleCase
